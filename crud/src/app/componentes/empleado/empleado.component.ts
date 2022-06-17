@@ -74,7 +74,6 @@ export class EmpleadoComponent implements OnInit {
 
   // Medodo para crear un formulario en blanco.
   crearFormulario(){
-
     return this.fb.group({
       //id      :   [{value:'', disabled:this.id!=='nuevo'},[Validators.required]],
       id      :   ['',[Validators.required]],
@@ -92,9 +91,7 @@ export class EmpleadoComponent implements OnInit {
 
   // Metodo para establecer los valores del formulario a partir de un Empleado recibido para 
   establecerFormulario(empleado:Empleado){
-
     this.formulario.setValue(empleado);
-
   }
 
 
@@ -110,57 +107,42 @@ export class EmpleadoComponent implements OnInit {
       if(this.id ==='nuevo'){
 
         console.log("Creando empleado....");
-        console.log(this.formulario.value);
-
-        this.empleadosService.crearEmpleado({
-            fechaNacimiento : this.formulario.get('fechaNacimiento')?.value,
-            id              : Number(this.formulario.get('id')?.value),
-            nombre          : this.formulario.get('nombre')?.value,
-            apellido        : this.formulario.get('apellido')?.value,
-            cedula          : Number(this.formulario.get('cedula')?.value),
-            sexo            : this.formulario.get('sexo')?.value
-        })
-        .subscribe({
-
+        
+        this.empleadosService.crearEmpleado(this.formulario.value).subscribe({
+          // Callback Exito
           next: (resp)=>{
-            //console.log(resp);
             console.log("Empleado creado correctamente!");
             alert("Empleado creado correctamente!");
-
             this.formulario.reset();
           },
+          //Callback Error
           error:(e)=>{
-
             console.log(e);
-            alert("Erroral crear el empleado: "+e);
-
+            alert("Error al crear empleado: "+e.message);
           }
         });
       }
       else{// Formulario para empleado existente
-
         console.log("Actualizando empleado...");
-
+        //this.empleadosService.actualizarEmpleado(this.formulario.value).subscribe({
         this.empleadosService.actualizarEmpleado({
-          fechaNacimiento : this.formulario.get('fechaNacimiento')?.value,
-          id              : Number(this.formulario.get('id')?.value),
-          nombre          : this.formulario.get('nombre')?.value,
-          apellido        : this.formulario.get('apellido')?.value,
-          cedula          : Number(this.formulario.get('cedula')?.value),
-          sexo            : this.formulario.get('sexo')?.value
-        })
-        .subscribe({
-
-          next: (resp)=>{
-            //console.log(resp);
-            console.log("Empleado actualizado correctamente!");
-            alert("Empleado acualizado correctamente!");
-          },
-
-          error:(e)=>{
-            console.log(e.message)
-            alert("Error al actualizar el Empleado:"+e);
-          }
+               fechaNacimiento : this.formulario.get('fechaNacimiento')?.value,
+               id              : Number(this.formulario.get('id')?.value),
+               nombre          : this.formulario.get('nombre')?.value,
+               apellido        : this.formulario.get('apellido')?.value,
+               cedula          : Number(this.formulario.get('cedula')?.value),
+               sexo            : this.formulario.get('sexo')?.value
+           }).subscribe({
+              // Callback Exito
+              next: (resp)=>{
+                console.log("Empleado actualizado correctamente!");
+                alert("Empleado acualizado correctamente!");
+              },
+              //Callback Error
+              error:(e)=>{
+                console.log(e.message)
+                alert("Error al actualizar el Empleado:"+e);
+              }
         });
       }
     }
@@ -179,25 +161,17 @@ export class EmpleadoComponent implements OnInit {
         console.log('Eliminando empleado...');
         
         this.empleadosService.eliminarEmpleado(Number(this.id)).subscribe({
-          
+          // Callback Exito
           next:(resp)=>{
-  
-            //console.log(resp);
-            console.log('Empleado eliminado correctamente!');
             alert("Empleado eliminado correctamente!");
-  
             this.formulario.reset();
-  
             this.router.navigate(['/empleados']);
-  
           },
-  
+          // Callback Error
           error:(e)=>{console.log(e)}
   
         });
       }
-      
-
     }
   }
 
