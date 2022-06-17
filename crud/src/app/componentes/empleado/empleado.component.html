@@ -1,0 +1,68 @@
+<h1>Datos del empleado</h1>
+
+<div *ngIf="cargando"><h3>Cargando...</h3></div>
+
+<form *ngIf="!cargando" [formGroup]="formulario" (ngSubmit) = "guardar()">
+    
+    <div>
+        <label>Id</label>
+        <small *ngIf="idInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+        <input type="text"
+                name="id"
+                formControlName="id"
+                [class.invalido] = "idInvalido">
+                
+    </div>
+
+    <div>
+        <label> Cédula</label>
+        <small *ngIf="cedulaInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+        <input type="text"
+                name="cedula"
+                formControlName="cedula"
+                [class.invalido] = "cedulaInvalido">
+    </div>
+    
+    <div>
+        <label>Nombre</label>
+        <small *ngIf="nombreInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+        <input type="text"
+                name="nombre"
+                formControlName="nombre"
+                [class.invalido] = "nombreInvalido">
+    </div>
+
+    <div>
+        <label>Apellido </label>
+        <small *ngIf="apellidoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+        <input type="text"
+            name="apellido"
+            formControlName="apellido"
+            [class.invalido] = "apellidoInvalido">
+    </div>
+
+    <div>
+        <label>Fecha Nacimiento</label>
+        <small *ngIf="fechaNacimientoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+        <input type="text"
+            name="fechaNacimiento"
+            formControlName="fechaNacimiento"
+            [class.invalido] = "fechaNacimientoInvalido">
+            
+    </div>
+
+    <div>
+        <label>Sexo</label>
+        <small *ngIf="sexoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+        <input type="text"
+            name="sexo"
+            formControlName="sexo"
+            [class.invalido] = "sexoInvalido">
+    </div>
+
+
+    <div><button type="submit" [disabled]="!formulario.valid">Guardar</button></div>
+
+    <div *ngIf="id!=='nuevo'"><button type="button" [disabled]="cargando || !formulario.valid || id=='nuevo'" (click)="eliminar()">Eliminar</button></div>
+    
+</form>

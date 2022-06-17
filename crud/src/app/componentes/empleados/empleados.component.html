@@ -1,0 +1,25 @@
+<h1>Lista de empleados</h1>
+
+<div *ngIf="cargando"><h3>Cargando...</h3></div>
+
+<div *ngIf = "empleados.length === 0 && !cargando">
+  <h4>No hay empleados par mostrar</h4>
+</div>
+
+<ul>
+  <li *ngFor="let empleado of empleados" >
+    <a [routerLink]="['/empleado', empleado.id]">
+      <h4>{{ empleado.nombre + " " + empleado.apellido | uppercase }}</h4>
+      <h5><span>Cédula:</span><span>{{empleado.cedula}}</span></h5>
+      <h6>
+        <span>Fecha nacimiento:</span><span>{{empleado.fechaNacimiento | date:'short'}}</span>
+        <span>Sexo:</span><span>{{empleado.sexo}}</span>
+      </h6>
+    </a>
+  </li>
+</ul>
+
+<div id="div-nuevo">
+  <a [routerLink]="['/empleado','nuevo']">Crear nuevo</a>
+</div>
+
