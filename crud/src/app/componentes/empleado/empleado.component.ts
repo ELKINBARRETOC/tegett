@@ -110,6 +110,7 @@ export class EmpleadoComponent implements OnInit {
       if(this.id ==='nuevo'){
 
         console.log("Creando empleado....");
+        console.log(this.formulario.value);
 
         this.empleadosService.crearEmpleado({
             fechaNacimiento : this.formulario.get('fechaNacimiento')?.value,
