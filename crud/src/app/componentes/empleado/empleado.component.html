@@ -48,16 +48,25 @@
             name="fechaNacimiento"
             formControlName="fechaNacimiento"
             [class.invalido] = "fechaNacimientoInvalido">
+        <!--<input type="date"
+            name="fechaNacimiento"
+            formControlName="fechaNacimiento"
+            [class.invalido] = "fechaNacimientoInvalido">-->
             
     </div>
 
     <div>
         <label>Sexo</label>
         <small *ngIf="sexoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
-        <input type="text"
+        <!-- <input type="text"
             name="sexo"
             formControlName="sexo"
-            [class.invalido] = "sexoInvalido">
+            [class.invalido] = "sexoInvalido"> -->
+            
+            <select name="sexo" formControlName = "sexo" [class.invalido] = "sexoInvalido">
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+            </select>
     </div>
 
 

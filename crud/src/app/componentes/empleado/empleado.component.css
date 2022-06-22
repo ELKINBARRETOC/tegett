@@ -11,9 +11,10 @@ label{
     margin-bottom: 8px;
 }
 
-input[type='text']{
+input[type='text'], select{
 
   width: 80%;
+  display: block;
   padding: 8px 20px;
   border: 1px solid #dedede;
   border-radius: 8px;

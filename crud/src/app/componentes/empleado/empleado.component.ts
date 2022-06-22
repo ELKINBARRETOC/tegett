@@ -200,7 +200,7 @@ export class EmpleadoComponent implements OnInit {
   get fechaNacimientoInvalido(){
     return (this.formulario.get('fechaNacimiento')?.invalid) && (this.formulario.get('fechaNacimiento')?.touched)
   }
-
+  
   // Metodo para verificar si hay error
   get sexoInvalido(){
     return (this.formulario.get('sexo')?.invalid) && (this.formulario.get('sexo')?.touched)
