@@ -44,14 +44,14 @@
     <div>
         <label>Fecha Nacimiento</label>
         <small *ngIf="fechaNacimientoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
-        <input type="text"
-            name="fechaNacimiento"
-            formControlName="fechaNacimiento"
-            [class.invalido] = "fechaNacimientoInvalido">
-        <!--<input type="date"
+        <!--<input type="text"
             name="fechaNacimiento"
             formControlName="fechaNacimiento"
             [class.invalido] = "fechaNacimientoInvalido">-->
+        <input type="date"
+            name="fechaNacimiento"
+            formControlName="fechaNacimiento"
+            [class.invalido] = "fechaNacimientoInvalido">
             
     </div>
 

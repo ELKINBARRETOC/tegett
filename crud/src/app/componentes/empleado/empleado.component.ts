@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +25,6 @@ export class EmpleadoComponent implements OnInit {
   ){ 
     
     this.formulario = this.crearFormulario();
-    
     
   }
   
@@ -80,22 +80,41 @@ export class EmpleadoComponent implements OnInit {
       cedula  :   ['',[Validators.required]],
       nombre  :   ['',[Validators.required]],
       apellido:   ['',[Validators.required]],
-      fechaNacimiento: ['',[Validators.required]],
+      //fechaNacimiento: ['',[Validators.required]],
+      fechaNacimiento: [this.formatearFecha(),[Validators.required]],
       sexo    :   ['',[Validators.required]]
     });
-  }
-
-
-
+  } 
 
 
   // Metodo para establecer los valores del formulario a partir de un Empleado recibido para 
   establecerFormulario(empleado:Empleado){
+    //console.log(empleado);
+    empleado.fechaNacimiento = this.formatearFecha(empleado.fechaNacimiento);
     this.formulario.setValue(empleado);
   }
 
 
 
+  // formatear fecha formato yyyy-mm-dd
+  formatearFecha(fecha?: string):string{
+    
+    let fn, anio, mes, dia;
+    
+    if(fecha){
+      fn = new Date(fecha);
+    }
+    else{
+      fn = new Date();
+      
+    }
+
+    anio = fn.getFullYear();
+    ((fn.getMonth()+1) <10)? mes = "0"+(fn.getMonth()+1) : mes = fn.getMonth()+1;
+    dia = fn.getDate();
+      
+    return `${anio}-${mes}-${dia}`;
+  }
 
   // Metodo para realizar enviar el formulario
   guardar(){
@@ -175,6 +194,7 @@ export class EmpleadoComponent implements OnInit {
     }
   }
 
+  
 
   // Metodo para verificar si hay error
   get idInvalido(){

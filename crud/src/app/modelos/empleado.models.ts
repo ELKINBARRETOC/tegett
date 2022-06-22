@@ -1,5 +1,6 @@
 export interface Empleado{
-    fechaNacimiento: Date,
+    // fechaNacimiento: Date,
+    fechaNacimiento: string,
     id: number,
     nombre: string,
     apellido: string,
