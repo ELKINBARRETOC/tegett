@@ -1,25 +1,28 @@
-<h1>Lista de empleados</h1>
+<div class="container">
 
-<div *ngIf="cargando"><h3>Cargando...</h3></div>
-
-<div *ngIf = "empleados.length === 0 && !cargando">
-  <h4>No hay empleados par mostrar</h4>
-</div>
-
-<ul>
-  <li *ngFor="let empleado of empleados" >
-    <a [routerLink]="['/empleado', empleado.id]">
-      <h4>{{ empleado.nombre + " " + empleado.apellido | uppercase }}</h4>
-      <h5><span>Cédula:</span><span>{{empleado.cedula}}</span></h5>
-      <h6>
-        <span>Fecha nacimiento:</span><span>{{empleado.fechaNacimiento | date:'short'}}</span>
-        <span>Sexo:</span><span>{{empleado.sexo}}</span>
-      </h6>
-    </a>
-  </li>
-</ul>
-
-<div id="div-nuevo">
-  <a [routerLink]="['/empleado','nuevo']">Crear nuevo</a>
+  <h4 class="h4 mt-4 mb-4">Lista de empleados</h4>
+  
+  <div *ngIf="cargando" class="alert alert-info md-6"><h6>Cargando...</h6></div>
+  
+  <div *ngIf = "empleados.length === 0 && !cargando">
+    <h4>No hay empleados par mostrar</h4>
+  </div>
+  
+  <ul>
+    <li *ngFor="let empleado of empleados" >
+      <a [routerLink]="['/empleado', empleado.id]">
+        <h6 class="h6">{{ empleado.nombre + " " + empleado.apellido | uppercase }}</h6>
+        <h6><span>Cédula:</span><span>{{empleado.cedula}}</span></h6>
+        <h6>
+          <span>Fecha nacimiento:</span><span>{{empleado.fechaNacimiento | date:'short'}}</span>
+          <span>Sexo:</span><span>{{empleado.sexo}}</span>
+        </h6>
+      </a>
+    </li>
+  </ul>
+  
+  <div id="div-nuevo" class="container">
+    <a [routerLink]="['/empleado','nuevo']">Crear nuevo</a>
+  </div>
 </div>
 

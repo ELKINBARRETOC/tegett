@@ -1,77 +1,88 @@
-<h1>Datos del empleado</h1>
+<div class="container">
 
-<div *ngIf="cargando"><h3>Cargando...</h3></div>
-
-<form *ngIf="!cargando" [formGroup]="formulario" (ngSubmit) = "guardar()">
+    <h4 class="h4 mt-4 mb-4">Datos del empleado</h4>
     
-    <div>
-        <label>Id</label>
-        <small *ngIf="idInvalido" class="mensaje-requerido">Este campo es requerido.</small>
-        <input type="text"
-                name="id"
-                formControlName="id"
-                [class.invalido] = "idInvalido">
+    <div *ngIf="cargando" class="alert alert-info md-6" role="alert"><h6>Cargando...</h6></div>
+    
+    <form *ngIf="!cargando" [formGroup]="formulario" (ngSubmit) = "guardar()">
+        
+        <div>
+            <label class="form-label">Id</label>
+            <small *ngIf="idInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+            <input type="text"
+                    class="form-control"
+                    name="id"
+                    formControlName="id"
+                    [class.invalido] = "idInvalido">
+                    
+        </div>
+    
+        <div>
+            <label class="form-label"> Cédula</label>
+            <small *ngIf="cedulaInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+            <input type="text"
+                    class="form-control"
+                    name="cedula"
+                    formControlName="cedula"
+                    [class.invalido] = "cedulaInvalido">
+        </div>
+        
+        <div>
+            <label class="form-label">Nombre</label>
+            <small *ngIf="nombreInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+            <input type="text"
+                    class="form-control"
+                    name="nombre"
+                    formControlName="nombre"
+                    [class.invalido] = "nombreInvalido">
+        </div>
+    
+        <div>
+            <label class="form-label">Apellido </label>
+            <small *ngIf="apellidoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+            <input type="text"
+                    class="form-control"
+                name="apellido"
+                formControlName="apellido"
+                [class.invalido] = "apellidoInvalido">
+        </div>
+    
+        <div>
+            <label class="form-label">Fecha Nacimiento</label>
+            <small *ngIf="fechaNacimientoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+            <!--<input type="text"
+                        class="form-control"
+                name="fechaNacimiento"
+                formControlName="fechaNacimiento"
+                [class.invalido] = "fechaNacimientoInvalido">-->
+            <input type="date"
+                name="fechaNacimiento"
+                class="form-control"
+                formControlName="fechaNacimiento"
+                [class.invalido] = "fechaNacimientoInvalido">
                 
-    </div>
-
-    <div>
-        <label> Cédula</label>
-        <small *ngIf="cedulaInvalido" class="mensaje-requerido">Este campo es requerido.</small>
-        <input type="text"
-                name="cedula"
-                formControlName="cedula"
-                [class.invalido] = "cedulaInvalido">
-    </div>
+        </div>
     
-    <div>
-        <label>Nombre</label>
-        <small *ngIf="nombreInvalido" class="mensaje-requerido">Este campo es requerido.</small>
-        <input type="text"
-                name="nombre"
-                formControlName="nombre"
-                [class.invalido] = "nombreInvalido">
-    </div>
-
-    <div>
-        <label>Apellido </label>
-        <small *ngIf="apellidoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
-        <input type="text"
-            name="apellido"
-            formControlName="apellido"
-            [class.invalido] = "apellidoInvalido">
-    </div>
-
-    <div>
-        <label>Fecha Nacimiento</label>
-        <small *ngIf="fechaNacimientoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
-        <!--<input type="text"
-            name="fechaNacimiento"
-            formControlName="fechaNacimiento"
-            [class.invalido] = "fechaNacimientoInvalido">-->
-        <input type="date"
-            name="fechaNacimiento"
-            formControlName="fechaNacimiento"
-            [class.invalido] = "fechaNacimientoInvalido">
-            
-    </div>
-
-    <div>
-        <label>Sexo</label>
-        <small *ngIf="sexoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
-        <!-- <input type="text"
-            name="sexo"
-            formControlName="sexo"
-            [class.invalido] = "sexoInvalido"> -->
-            
-            <select name="sexo" formControlName = "sexo" [class.invalido] = "sexoInvalido">
-                <option value="Hombre">Hombre</option>
-                <option value="Mujer">Mujer</option>
-            </select>
-    </div>
-
-
-    <div><button type="submit" [disabled]="!formulario.valid">Guardar</button></div>
-
-    <div *ngIf="id!=='nuevo'"><button type="button" [disabled]="cargando || !formulario.valid || id=='nuevo'" (click)="eliminar()">Eliminar</button></div>
+        <div>
+            <label class="form-label">Sexo</label>
+            <small *ngIf="sexoInvalido" class="mensaje-requerido">Este campo es requerido.</small>
+            <!-- <input type="text"
+                        class="form-control"
+                name="sexo"
+                formControlName="sexo"
+                [class.invalido] = "sexoInvalido"> -->
+                
+                <select name="sexo" formControlName = "sexo" class="form-select" [class.invalido] = "sexoInvalido">
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                </select>
+        </div>
     
-</form>
+    
+        <div class="row mt-4">
+            <div class="col-auto"><button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">Guardar</button></div>
+            <div class="col-auto" *ngIf="id!=='nuevo'"><button type="button"  class="btn btn-danger" [disabled]="cargando || !formulario.valid || id=='nuevo'" (click)="eliminar()">Eliminar</button></div>
+        </div>
+        
+    </form>
+</div>
