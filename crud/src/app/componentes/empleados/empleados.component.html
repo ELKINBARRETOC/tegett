@@ -5,12 +5,12 @@
   <div *ngIf="cargando" class="alert alert-info md-6"><h6>Cargando...</h6></div>
   
   <div *ngIf = "empleados.length === 0 && !cargando">
-    <h4>No hay empleados par mostrar</h4>
+    <h6>No hay empleados par mostrar</h6>
   </div>
   
-  <ul>
-    <li *ngFor="let empleado of empleados" >
-      <a [routerLink]="['/empleado', empleado.id]">
+  <ul class="list-group">
+    <li *ngFor="let empleado of empleados" class="list-group-item">
+      <a [routerLink]="['/empleado', empleado.id]" class="list-group-item list-group-item-action">
         <h6 class="h6">{{ empleado.nombre + " " + empleado.apellido | uppercase }}</h6>
         <h6><span>Cédula:</span><span>{{empleado.cedula}}</span></h6>
         <h6>
