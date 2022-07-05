@@ -16,6 +16,7 @@ import { EmpleadosService } from './servicios/empleados.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmpleadoComponent } from './componentes/empleado/empleado.component';
+import { EdadPipe } from './pipes/edad.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EmpleadoComponent } from './componentes/empleado/empleado.component';
     EmpleadosComponent,
     HomeComponent,
     NavbarComponent,
-    EmpleadoComponent
+    EmpleadoComponent,
+    EdadPipe
   ],
   imports: [
     BrowserModule,
